@@ -101,7 +101,7 @@ const styles = StyleSheet.create({
 
 export default class App extends React.Component {
   componentDidMount() {
-    initStorage()
+    // initStorage()
     setLocalNotification()
   }
   render() {

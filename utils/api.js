@@ -31,7 +31,9 @@ export function initStorage() {
   AsyncStorage.setItem(FLASHCARDS_STORAGE_KEY, JSON.stringify(defaultState))
 }
 
-export function getDecks() {
+export function fetchDecks() {
+  return AsyncStorage.getItem(FLASHCARDS_STORAGE_KEY)
+  .then((result) => {JSON.parse(result)})
 }
 
 export function fetchDeck(deck) {
