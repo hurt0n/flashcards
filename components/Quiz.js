@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import {Text, TouchableOpacity, StyleSheet, View} from 'react-native'
 import {correct, correct2, error, error2, lightGray, yellow, darkYellow} from '../utils/colors'
-import {clearLocalNotification, setLocalNotification} from '../utils/helpers'
+import {clearLocalNotification, setLocalNotification, StyleBtn} from '../utils/helpers'
 
 class Quiz extends Component {
 
@@ -50,16 +50,16 @@ class Quiz extends Component {
         </View>
         <View style={styles.container2}>
           <TouchableOpacity onPress={this.restartQuiz}>
-            <View style={styles.btnMain}>
-              <Text style={styles.btnMainText}>{"Restart Quiz".toUpperCase()}</Text>
+            <View style={StyleBtn.btnMain}>
+              <Text style={StyleBtn.btnMainText}>{"Restart Quiz".toUpperCase()}</Text>
             </View>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => this.props.navigation.navigate(
             'Deck',
             {deck}
           )}>
-            <View style={styles.btnMain}>
-              <Text style={styles.btnMainText}>{"Back to Deck".toUpperCase()}</Text>
+            <View style={StyleBtn.btnMain}>
+              <Text style={StyleBtn.btnMainText}>{"Back to Deck".toUpperCase()}</Text>
             </View>
           </TouchableOpacity>
         </View>
@@ -203,27 +203,5 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     textAlign: 'center',
     color: '#868890'
-  },
-  btnMain: {
-    padding: 14,
-    paddingLeft: 60,
-    paddingRight: 60,
-    borderRadius: 30,
-    margin: 10,
-    justifyContent: 'center',
-    backgroundColor: yellow,
-    shadowColor: yellow,
-    shadowOffset: {
-      width: 0,
-      height: 10
-    },
-    shadowRadius: 10,
-    shadowOpacity: .4
-  },
-  btnMainText: {
-    color: darkYellow,
-    fontSize: 15,
-    fontWeight: 'bold',
-    textAlign: 'center'
   }
 })

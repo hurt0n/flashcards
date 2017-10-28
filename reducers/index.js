@@ -1,9 +1,4 @@
-import {
-  RECEIVE_DECKS,
-  RECEIVE_DECK,
-  ADD_DECK,
-  ADD_CARD
-} from '../actions'
+import {RECEIVE_DECKS, RECEIVE_DECK, ADD_DECK, ADD_CARD} from '../actions/types'
 
 const defaultState = {
   decks: {}
@@ -15,7 +10,7 @@ function decks(state = defaultState, action) {
     case RECEIVE_DECKS:
       return {
         ...state,
-        ...action.decks
+        decks: decks
       }
     case RECEIVE_DECK:
       return {

@@ -8,6 +8,7 @@ npm start
 
 After successfull downloading of all packages and starting, your javscript bundle will build. After that you choose from menu to run Emulator, display QR code for expo, restart and so on
 
+when you want read more details about expo, here is the documentation https://docs.expo.io/versions/latest/index.html
 
 ## navigation
 

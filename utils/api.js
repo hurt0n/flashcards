@@ -28,12 +28,11 @@ export function initStorage() {
     }
   }
   AsyncStorage.clear()
-  AsyncStorage.setItem(FLASHCARDS_STORAGE_KEY, JSON.stringify(defaultState))
+  AsyncStorage.mergeItem(FLASHCARDS_STORAGE_KEY, JSON.stringify(defaultState))
 }
 
 export function fetchDecks() {
   return AsyncStorage.getItem(FLASHCARDS_STORAGE_KEY)
-  .then((result) => {JSON.parse(result)})
 }
 
 export function fetchDeck(deck) {

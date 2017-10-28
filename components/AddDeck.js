@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import {Text, TextInput, View, StyleSheet, TouchableOpacity} from 'react-native'
+import {Text, TextInput, View, KeyboardAvoidingView, StyleSheet, TouchableOpacity} from 'react-native'
 import {yellow, darkYellow} from '../utils/colors'
 import {addDeck} from '../actions'
 import {saveDeckTitle} from '../utils/api'
 import {NavigationActions} from 'react-navigation'
+import {StyleBtn} from '../utils/helpers'
 
 class AddDeck extends Component {
 
@@ -15,28 +16,32 @@ class AddDeck extends Component {
   submit = () => {
     const {deck} = this.state
     this.props.dispatch(addDeck(deck))
-    this.toHome()
+    this.toDeck()
     saveDeckTitle(deck)
   }
 
-  toHome = () => {
-    this.props.navigation.navigate('DeckList')
+  toDeck = () => {
+    const {deck} = this.state
+    this.props.navigation.navigate(
+      'Deck',
+      {deck}
+    )
   }
 
   render() {
     return(
-      <View style={styles.container}>
+      <KeyboardAvoidingView style={styles.container}>
         <Text style={styles.heading1}>What is the title of your new deck?</Text>
         <TextInput style={styles.textInput}
           placeholder='Wrte your new deck name'
           onChangeText={(deckTitle) => this.setState({deck: deckTitle})}
           value={this.state.deck} />
         <TouchableOpacity onPress={this.submit}>
-          <View style={styles.btnMain}>
-            <Text style={styles.btnMainText}>{"Add Deck".toUpperCase()}</Text>
+          <View style={StyleBtn.btnMain}>
+            <Text style={StyleBtn.btnMainText}>{"Add Deck".toUpperCase()}</Text>
           </View>
         </TouchableOpacity>
-      </View>
+      </KeyboardAvoidingView>
     )
   }
 }
@@ -85,27 +90,5 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     justifyContent: 'center',
     alignItems: 'stretch'
-  },
-  btnMain: {
-    padding: 14,
-    paddingLeft: 60,
-    paddingRight: 60,
-    borderRadius: 30,
-    margin: 20,
-    justifyContent: 'center',
-    backgroundColor: yellow,
-    shadowColor: yellow,
-    shadowOffset: {
-      width: 0,
-      height: 10
-    },
-    shadowRadius: 10,
-    shadowOpacity: .4
-  },
-  btnMainText: {
-    color: darkYellow,
-    fontSize: 15,
-    fontWeight: 'bold',
-    textAlign: 'center'
   }
 });

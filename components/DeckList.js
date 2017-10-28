@@ -1,13 +1,15 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import {fetchDecks} from '../utils/api'
+import {fetchDecks, initStorage} from '../utils/api'
 import {receiveDecks} from '../actions'
 import {Text, TouchableOpacity, StyleSheet, View} from 'react-native'
 
 class DeckList extends Component {
 
   componentDidMount() {
-    fetchDecks().then((data) => this.props.dispatch(receiveDecks(data)))
+    fetchDecks().then((data) => {
+      this.props.dispatch(receiveDecks(JSON.parse(data)))
+    })
   }
 
   render() {

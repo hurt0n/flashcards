@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import {Text, TextInput, View, StyleSheet, TouchableOpacity} from 'react-native'
-import {yellow, darkYellow} from '../utils/colors'
+import {yellow, darkYellow } from '../utils/colors'
+import {StyleBtn} from '../utils/helpers'
 import {addCard} from '../actions'
 import {addCardToDeck} from '../utils/api'
 import {NavigationActions} from 'react-navigation'
@@ -32,19 +33,19 @@ class AddCard extends Component {
     return(
       <View style={styles.container}>
         <View style={styles.deckItem}>
-          <Text style={styles.label}>{"Question".toUpperCase()}</Text>
-          <TextInput style={styles.textInput}
+          <Text style={stylesForm.label}>{"Question".toUpperCase()}</Text>
+          <TextInput style={stylesForm.textInput}
             placeholder='Write your new question'
             onChangeText={(question) => this.setState({question: question})}
             value={this.state.question} />
           <Text style={styles.label}>{"Answer".toUpperCase()}</Text>
-          <TextInput style={styles.textInput}
+          <TextInput style={stylesForm.textInput}
             placeholder='Write an answer'
             onChangeText={(answer) => this.setState({answer: answer})}
             value={this.state.answer} />
           <TouchableOpacity onPress={this.submit}>
-            <View style={styles.btnMain}>
-              <Text style={styles.btnMainText}>{"Add Card".toUpperCase()}</Text>
+            <View style={StyleBtn.btnMain}>
+              <Text style={StyleBtn.btnMainText}>{"Add Card".toUpperCase()}</Text>
             </View>
           </TouchableOpacity>
         </View>
@@ -79,6 +80,9 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'stretch',
   },
+});
+
+const stylesForm = StyleSheet.create({
   textInput: {
     padding: 10,
     backgroundColor: '#fff',
@@ -90,31 +94,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'stretch'
   },
-  btnMain: {
-    padding: 14,
-    paddingLeft: 60,
-    paddingRight: 60,
-    borderRadius: 30,
-    marginTop: 20,
-    marginBottom: 20,
-    backgroundColor: yellow,
-    shadowColor: yellow,
-    shadowOffset: {
-      width: 0,
-      height: 10
-    },
-    shadowRadius: 10,
-    shadowOpacity: .4
-  },
-  btnMainText: {
-    color: darkYellow,
-    fontSize: 15,
-    fontWeight: 'bold',
-    textAlign: 'center'
-  },
   label: {
     fontSize: 13,
     marginTop: 10,
     marginBottom: 10,
   }
-});
+})

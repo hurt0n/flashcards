@@ -6,6 +6,7 @@ import {receiveDeck} from '../actions'
 import Quiz from './Quiz'
 import AddCard from './AddCard'
 import {yellow, darkYellow} from '../utils/colors'
+import {StyleBtn} from '../utils/helpers'
 
 class Deck extends Component {
 
@@ -32,8 +33,8 @@ class Deck extends Component {
               'Quiz',
               {deck}
             )}>
-              <View style={styles.btnMain}>
-                <Text style={styles.btnMainText}>{"Start Quiz".toUpperCase()}</Text>
+              <View style={StyleBtn.btnMain}>
+                <Text style={StyleBtn.btnMainText}>{"Start Quiz".toUpperCase()}</Text>
               </View>
             </TouchableOpacity>
           ) : (<Text style={styles.questionCounter}>No cards</Text>)
@@ -42,8 +43,8 @@ class Deck extends Component {
             'AddCard',
             {deck}
           )}>
-            <View style={styles.btnMain}>
-              <Text style={styles.btnMainText}>{"Add Card".toUpperCase()}</Text>
+            <View style={StyleBtn.btnMain}>
+              <Text style={StyleBtn.btnMainText}>{"Add Card".toUpperCase()}</Text>
             </View>
           </TouchableOpacity>
         </View>
@@ -85,33 +86,11 @@ const styles = StyleSheet.create({
     color: '#cecece',
     textAlign: 'center',
     marginBottom: 50
-  },
-  btnMain: {
-    padding: 14,
-    paddingLeft: 60,
-    paddingRight: 60,
-    borderRadius: 30,
-    margin: 10,
-    justifyContent: 'center',
-    backgroundColor: yellow,
-    shadowColor: yellow,
-    shadowOffset: {
-      width: 0,
-      height: 10
-    },
-    shadowRadius: 10,
-    shadowOpacity: .4
-  },
-  btnMainText: {
-    color: darkYellow,
-    fontSize: 15,
-    fontWeight: 'bold',
-    textAlign: 'center'
   }
 });
 
-function mapStateToProps(state) {
-  return state
+function mapStateToProps({decks}) {
+  return {decks}
 }
 
 export default connect(mapStateToProps)(Deck)

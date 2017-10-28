@@ -1,27 +1,19 @@
 import React from 'react';
-import { StyleSheet, Text, View, StatusBar} from 'react-native';
+import { StyleSheet, Text, View} from 'react-native';
 import {TabNavigator, StackNavigator} from 'react-navigation'
 import {Provider} from 'react-redux'
 import Deck from './components/Deck'
 import Quiz from './components/Quiz'
 import AddDeck from './components/AddDeck'
 import AddCard from './components/AddCard'
+import {initStorage} from './utils/api'
 import {createStore} from 'redux'
 import reducer from './reducers'
-import {Constants} from 'expo'
 import DeckList from './components/DeckList'
 import {FontAwesome, Ionicons, MaterialCommunityIcons, MaterialIcons} from '@expo/vector-icons'
 import {blue, brown, lightGray} from './utils/colors'
-import {initStorage} from './utils/api'
 import {setLocalNotification} from './utils/helpers'
-
-function FlashCardsStatusBar({backgroundColor, ...props}) {
-  return(
-    <View style={{backgroundColor, height: Constants.statusBarHeight}}>
-      <StatusBar translucent backgroundColor={backgroundColor} {...props} />
-    </View>
-  )
-}
+import {FlashCardsStatusBar} from './components/FlashCardsStatusBar'
 
 const Tabs = TabNavigator({
   DeckList: {
@@ -101,7 +93,7 @@ const styles = StyleSheet.create({
 
 export default class App extends React.Component {
   componentDidMount() {
-    // initStorage()
+    initStorage()
     setLocalNotification()
   }
   render() {
